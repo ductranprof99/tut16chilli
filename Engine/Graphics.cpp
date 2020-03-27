@@ -316,6 +316,31 @@ void Graphics::PutPixel( int x,int y,Color c )
 	pSysBuffer[Graphics::ScreenWidth * y + x] = c;
 }
 
+void Graphics::DrawCircle(int x0, int y0, int radius, Color c)
+{
+	assert(x0 >= 0);
+	assert(x0 < int(Graphics::ScreenWidth));
+	assert(y0 >= 0);
+	assert(y0 < int(Graphics::ScreenHeight));
+	int limit_x, limit_y;
+	int temp_x0 = x0 - radius;
+	int temp_y0 = y0 - radius;
+	if (temp_x0 < 0) temp_x0 = 0;
+	if (temp_x0 + 2 * radius > Graphics::ScreenHeight) limit_x = Graphics::ScreenHeight;
+	else limit_x = x0 + radius;
+	if (temp_y0 < 0) temp_y0 = 0;
+	if (temp_y0 + 2 * radius > Graphics::ScreenWidth) limit_y = Graphics::ScreenWidth;
+	else limit_y = y0 + radius;
+	for (int i = temp_x0; i < limit_x; i++)
+	{
+		for (int j = temp_y0; j < limit_y; j++)
+		{
+			if (long int((i - x0) * (i - x0)) + long int((j - y0) * (j - y0)) <= long int(radius * radius)) PutPixel(i,j,c);
+		}
+	}
+
+}
+
 void Graphics::DrawRect( int x0,int y0,int x1,int y1,Color c )
 {
 	if( x0 > x1 )

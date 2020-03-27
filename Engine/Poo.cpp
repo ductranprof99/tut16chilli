@@ -61,8 +61,8 @@ bool Poo::TestCollision( const Dude& dude ) const
 void Poo::Draw( Graphics& gfx ) const
 {
 	assert( initialized == true );
-	const int x_int = int(x_int);
-	const int y_int = int(y_int);
+	const int x_int = int(x);
+	const int y_int = int(y);
 	gfx.PutPixel( 14 + x_int,0 + y_int,138,77,0 );
 	gfx.PutPixel( 7 + x_int,1 + y_int,138,77,0 );
 	gfx.PutPixel( 13 + x_int,1 + y_int,138,77,0 );
